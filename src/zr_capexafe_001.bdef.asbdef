@@ -1,0 +1,122 @@
+managed implementation in class ZBP_R_CAPEXAFE_001 unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_CAPEXAFE_001 alias CapexAfe
+persistent table ZCAPEXAFE_001
+draft table ZCAPEXAFE_001_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( readonly )
+    AfeUuid,
+    CreatedBy,
+    CreatedAt,
+    LastChangedBy,
+    LastChangedAt,
+    LocalLastChangedAt,
+    ProjectName,
+    ProjectStartDate,
+    TotalInvestment,
+    ItemizedTotal;
+
+  field ( numbering : managed ) AfeUuid;
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare
+  {
+    validation checkProject;
+    validation checkBudgetFlags;
+  }
+
+  determination deriveProjectDetails on modify { create; field ProjectId; }
+  determination calculateTotals on modify
+  {
+    create;
+    field CapitalAmount;
+    field ExpenseAmount;
+    field ItemBuilding;
+    field ItemProcessLab;
+    field ItemFurniture;
+    field ItemITInfra;
+    field ItemCafeFurniture;
+    field ItemIDConsultantFee;
+    field ItemPMConsultantFee;
+    field ItemAdvisorFee;
+    field ItemLowValue;
+    field ItemRiskInflation;
+    field ItemInsuranceDeductions;
+    field ItemMisc;
+    field ItemElectric;
+  }
+
+  validation checkProject on save { create; update; field ProjectId; }
+  validation checkBudgetFlags on save { create; update; field IsBudgeted; field IsUnbudgeted; }
+
+  action Submit result [1] $self;
+  action Reopen result [1] $self;
+
+  mapping for ZCAPEXAFE_001 corresponding
+  {
+    AfeUuid = AFE_UUID;
+    ProjectId = PROJECT_ID;
+    ProjectName = PROJECT_NAME;
+    ProjectStartDate = PROJECT_START_DATE;
+    PurposeAddition = PURP_ADDITION;
+    PurposeRepair = PURP_REPAIR;
+    PurposeReplacement = PURP_REPLACEMENT;
+    PurposeExpansion = PURP_EXPANSION;
+    PurposeCostReduction = PURP_COST_REDUCT;
+    PurposeNewProduct = PURP_NEW_LINE;
+    PurposeRetirement = PURP_RETIREMENT;
+    PurposeOther = PURP_OTHER;
+    IsBudgeted = IS_BUDGETED;
+    IsUnbudgeted = IS_UNBUDGETED;
+    Currency = CURRENCY;
+    CapitalAmount = CAPITAL_AMOUNT;
+    ExpenseAmount = EXPENSE_AMOUNT;
+    TotalInvestment = TOTAL_INVESTMENT;
+    AnnualEarning = ANNUAL_EARNING;
+    ExchangeRate = EXCHANGE_RATE;
+    PaybackPeriod = PAYBACK_PERIOD;
+    CheckBeforeTax = CHK_BEFORE_TAX;
+    CheckAfterTax = CHK_AFTER_TAX;
+    RequestedBy = REQUESTED_BY;
+    RequestedDesignation = REQUESTED_DESG;
+    RequestedDepartment = REQUESTED_DEPT;
+    SignedBy = SIGNED_BY;
+    StartDate = START_DATE;
+    EndDate = END_DATE;
+    ProductDescription = PRODUCT_DESC;
+    ReasonForExpenditure = REASON_EXP;
+    AlternativesConsidered = ALT_CONSIDERED;
+    ItemBuilding = ITEM_BUILDING;
+    ItemProcessLab = ITEM_PROCESS_LAB;
+    ItemFurniture = ITEM_FURNITURE;
+    ItemITInfra = ITEM_IT_INFRA;
+    ItemCafeFurniture = ITEM_CAFE_FURN;
+    ItemIDConsultantFee = ITEM_ID_FEE;
+    ItemPMConsultantFee = ITEM_PM_FEE;
+    ItemAdvisorFee = ITEM_ADVISOR_FEE;
+    ItemLowValue = ITEM_LOW_VALUE;
+    ItemRiskInflation = ITEM_RISK_INFL;
+    ItemInsuranceDeductions = ITEM_INS_DEDUCT;
+    ItemMisc = ITEM_MISC;
+    ItemElectric = ITEM_ELECTRIC;
+    ItemizedTotal = ITEMIZED_TOTAL;
+    OverallStatus = OVERALL_STATUS;
+    CreatedBy = CREATED_BY;
+    CreatedAt = CREATED_AT;
+    LastChangedBy = LAST_CHANGED_BY;
+    LastChangedAt = LAST_CHANGED_AT;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+}

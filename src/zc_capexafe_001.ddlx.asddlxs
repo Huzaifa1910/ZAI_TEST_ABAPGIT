@@ -1,0 +1,37 @@
+@Metadata.layer: #CORE
+@UI.headerInfo.typeName: 'CAPEX AFE'
+@UI.headerInfo.typeNamePlural: 'CAPEX AFEs'
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.title.value: 'ProjectId'
+annotate view ZC_CAPEXAFE_001 with
+{
+  @UI.facet: [{ id: 'General', type: #IDENTIFICATION_REFERENCE, label: 'General Information', position: 10 }]
+  @UI.lineItem: [{ position: 10, label: 'AFE Number' }]
+  @UI.identification: [{ position: 10, label: 'AFE Number' }]
+  @UI.selectionField: [{ position: 10 }]
+  ProjectId;
+
+  @UI.lineItem: [{ position: 20, label: 'Project Name' }]
+  @UI.identification: [{ position: 20 }]
+  ProjectName;
+
+  @UI.lineItem: [{ position: 30, label: 'Date' }]
+  @UI.identification: [{ position: 30 }]
+  ProjectStartDate;
+
+  @UI.lineItem: [{ position: 40, label: 'Capital' }]
+  @UI.identification: [{ position: 40 }]
+  CapitalAmount;
+
+  @UI.lineItem: [{ position: 50, label: 'Expense' }]
+  @UI.identification: [{ position: 50 }]
+  ExpenseAmount;
+
+  @UI.lineItem: [{ position: 60, label: 'Total Investment' }]
+  @UI.identification: [{ position: 60 }]
+  TotalInvestment;
+
+  @UI.lineItem: [{ position: 70, label: 'Status' }]
+  @UI.identification: [{ position: 70 }]
+  OverallStatus;
+}

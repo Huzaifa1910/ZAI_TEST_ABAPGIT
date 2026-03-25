@@ -1,0 +1,22 @@
+projection implementation in class ZBP_C_CAPEXAFE_001 unique;
+strict ( 2 );
+extensible;
+use draft;
+
+define behavior for ZC_CAPEXAFE_001 alias CapexAfe
+extensible
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use action Submit;
+  use action Reopen;
+}

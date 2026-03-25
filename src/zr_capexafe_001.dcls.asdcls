@@ -1,0 +1,6 @@
+@EndUserText.label: 'Access Control for ZR_CAPEXAFE_001'
+@MappingRole: true
+define role ZR_CAPEXAFE_001 {
+  grant select on ZR_CAPEXAFE_001
+  where true;
+}
