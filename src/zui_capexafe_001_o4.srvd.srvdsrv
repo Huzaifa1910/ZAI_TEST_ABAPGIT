@@ -1,6 +1,10 @@
 @EndUserText.label: 'Service Definition for CAPEX AFE'
 @ObjectModel.leadingEntity.name: 'ZC_CAPEXAFE_001'
 define service ZUI_CAPEXAFE_001_O4 provider contracts odata_v4_ui {
-  expose ZC_CAPEXAFE_001;
+  expose ZC_CAPEXAFE_001 as AFEHeader
+    {
+      expose _Items as AFEItems;
+    };
+  expose ZC_AFE_ITEM as AFEItems;
   expose ZI_EP_PROJECT_001;
 }

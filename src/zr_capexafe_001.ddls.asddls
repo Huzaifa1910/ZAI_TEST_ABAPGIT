@@ -4,6 +4,7 @@
 @EndUserText.label: 'Root CAPEX AFE View Entity'
 define root view entity ZR_CAPEXAFE_001
   as select from ZCAPEXAFE_001
+  composition [0..*] of ZI_AFE_ITEM as _Items
 {
   key afe_uuid             as AfeUuid,
       project_id           as ProjectId,
@@ -85,5 +86,6 @@ define root view entity ZR_CAPEXAFE_001
       @Semantics.systemDateTime.lastChangedAt: true
       last_changed_at      as LastChangedAt,
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
-      local_last_changed_at as LocalLastChangedAt
+      local_last_changed_at as LocalLastChangedAt,
+      _Items
 }

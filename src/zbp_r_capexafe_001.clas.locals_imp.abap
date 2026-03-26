@@ -6,6 +6,10 @@ CLASS lhc_capexafe DEFINITION INHERITING FROM cl_abap_behavior_handler.
         submitted TYPE string VALUE 'Submitted',
       END OF status.
 
+    METHODS get_global_authorizations FOR GLOBAL AUTHORIZATION
+      IMPORTING REQUEST requested_auth FOR CapexAfe
+      RESULT result.
+
     METHODS deriveProjectDetails FOR DETERMINE ON MODIFY
       IMPORTING keys FOR CapexAfe~deriveProjectDetails.
 
@@ -26,6 +30,25 @@ CLASS lhc_capexafe DEFINITION INHERITING FROM cl_abap_behavior_handler.
 ENDCLASS.
 
 CLASS lhc_capexafe IMPLEMENTATION.
+
+  METHOD get_global_authorizations.
+    AUTHORITY-CHECK OBJECT 'S_TABUAUTH' ID 'TABLE' FIELD 'ZCAPEXAFE_001' ID 'ACTIVITY' FIELD '02'.
+    IF sy-subrc = 0.
+      result-%create = if_abap_behv=>auth-allowed.
+      result-%update = if_abap_behv=>auth-allowed.
+      result-%delete = if_abap_behv=>auth-allowed.
+      result-%read = if_abap_behv=>auth-allowed.
+      result-Submit = if_abap_behv=>auth-allowed.
+      result-Reopen = if_abap_behv=>auth-allowed.
+    ELSE.
+      result-%create = if_abap_behv=>auth-denied.
+      result-%update = if_abap_behv=>auth-denied.
+      result-%delete = if_abap_behv=>auth-denied.
+      result-%read = if_abap_behv=>auth-denied.
+      result-Submit = if_abap_behv=>auth-denied.
+      result-Reopen = if_abap_behv=>auth-denied.
+    ENDIF.
+  ENDMETHOD.
 
   METHOD deriveProjectDetails.
     READ ENTITIES OF ZR_CAPEXAFE_001 IN LOCAL MODE

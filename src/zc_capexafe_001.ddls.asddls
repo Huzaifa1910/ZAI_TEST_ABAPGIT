@@ -69,5 +69,6 @@ define root view entity ZC_CAPEXAFE_001
   LastChangedAt,
   LocalLastChangedAt,
 
-  _ProjectValueHelp
+  _ProjectValueHelp,
+  _Items : redirected to composition child ZC_AFE_ITEM
 }

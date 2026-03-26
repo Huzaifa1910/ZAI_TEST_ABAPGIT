@@ -27,6 +27,8 @@ authorization master( global )
   update;
   delete;
 
+  association _Items { create; }
+
   draft action Activate optimized;
   draft action Discard;
   draft action Edit;

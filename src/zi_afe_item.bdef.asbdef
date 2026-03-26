@@ -1,0 +1,38 @@
+managed implementation in class ZBP_AFE_ITEM unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_AFE_ITEM alias Item
+persistent table ZTB_AFE_ITM
+draft table ZCAPEXAFE_001_D
+etag master LocalLastChangedAt
+lock dependent by _Header
+authorization dependent by _Header
+{
+  field ( numbering : managed ) ItemUuid;
+  field ( readonly ) CreatedBy, CreatedAt, LastChangedBy, LastChangedAt, LocalLastChangedAt;
+
+  create;
+  update;
+  delete;
+
+  association _Header;
+
+  mapping for ZTB_AFE_ITM corresponding
+  {
+    ItemUuid = ITEM_UUID;
+    ParentUuid = PARENT_UUID;
+    ItemCategory = ITEM_CATEGORY;
+    ItemDescription = ITEM_DESCRIPTION;
+    ItemAmount = ITEM_AMOUNT;
+    Quantity = QUANTITY;
+    UnitPrice = UNIT_PRICE;
+    Currency = CURRENCY;
+    Notes = NOTES;
+    CreatedBy = CREATED_BY;
+    CreatedAt = CREATED_AT;
+    LastChangedBy = LAST_CHANGED_BY;
+    LastChangedAt = LAST_CHANGED_AT;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+}

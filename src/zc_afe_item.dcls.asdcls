@@ -1,0 +1,4 @@
+@EndUserText.label: 'Data Control for AFE Item Consumption'
+define behavior for ZC_AFE_ITEM
+{
+}

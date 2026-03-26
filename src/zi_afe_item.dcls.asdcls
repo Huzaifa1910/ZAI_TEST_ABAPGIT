@@ -1,0 +1,5 @@
+@EndUserText.label: 'Data Control for AFE Item'
+define behavior for ZI_AFE_ITEM
+persistence table ZTB_AFE_ITM
+{
+}
