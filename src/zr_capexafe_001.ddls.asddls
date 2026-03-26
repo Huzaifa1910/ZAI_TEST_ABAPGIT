@@ -11,19 +11,37 @@ define root view entity ZR_CAPEXAFE_001
       project_start_date    as ProjectStartDate,
 
       // ── Purpose of Expenditure (Checkboxes) ──
-      purpose_addition       as PurposeAddition,
-      purpose_repair         as PurposeRepair,
-      purpose_replacement    as PurposeReplacement,
-      purpose_expansion      as PurposeExpansion,
-      purpose_cost_reduction as PurposeCostReduction,
-      purpose_new_product    as PurposeNewProduct,
-      purpose_retirement     as PurposeRetirement,
-      purpose_other          as PurposeOther,
-      purpose_other_desc     as PurposeOtherDesc,
+      purp_addition          as PurpAddition,
+      purp_repair            as PurpRepair,
+      purp_replacement       as PurpReplacement,
+      purp_expansion         as PurpExpansion,
+      purp_cost_reduct       as PurpCostReduct,
+      purp_new_line          as PurpNewLine,
+      purp_retirement        as PurpRetirement,
+      purp_other             as PurpOther,
+
+      // ── Tax Checkboxes ──
+      chk_before_tax         as ChkBeforeTax,
+      chk_after_tax          as ChkAfterTax,
 
       // ── Budget Status ──
       is_budgeted            as IsBudgeted,
       is_unbudgeted          as IsUnbudgeted,
+
+      // ── Requester Information ──
+      requested_by           as RequestedBy,
+      requested_desg         as RequestedDesg,
+      requested_dept         as RequestedDept,
+      signed_by              as SignedBy,
+
+      // ── Project Dates ──
+      start_date             as StartDate,
+      end_date               as EndDate,
+
+      // ── Description & Justification ──
+      product_desc           as ProductDesc,
+      reason_exp             as ReasonExp,
+      alt_considered         as AltConsidered,
 
       // ── Financial Amounts ──
       @Semantics.amount.currencyCode: 'Currency'
@@ -39,19 +57,33 @@ define root view entity ZR_CAPEXAFE_001
       payback_period         as PaybackPeriod,
       currency               as Currency,
 
-      // ── Itemized Costs (Header-Level Summaries) ──
+      // ── Itemized Costs (Header-Level) ──
       @Semantics.amount.currencyCode: 'Currency'
-      cost_building_work     as CostBuildingWork,
+      item_building          as ItemBuilding,
       @Semantics.amount.currencyCode: 'Currency'
-      cost_lab_equipment     as CostLabEquipment,
+      item_process_lab       as ItemProcessLab,
       @Semantics.amount.currencyCode: 'Currency'
-      cost_furniture         as CostFurniture,
+      item_furniture         as ItemFurniture,
       @Semantics.amount.currencyCode: 'Currency'
-      cost_it_infra          as CostItInfra,
+      item_it_infra          as ItemItInfra,
       @Semantics.amount.currencyCode: 'Currency'
-      cost_fees              as CostFees,
+      item_cafe_furn         as ItemCafeFurn,
       @Semantics.amount.currencyCode: 'Currency'
-      cost_misc              as CostMisc,
+      item_id_fee            as ItemIdFee,
+      @Semantics.amount.currencyCode: 'Currency'
+      item_pm_fee            as ItemPmFee,
+      @Semantics.amount.currencyCode: 'Currency'
+      item_advisor_fee       as ItemAdvisorFee,
+      @Semantics.amount.currencyCode: 'Currency'
+      item_low_value         as ItemLowValue,
+      @Semantics.amount.currencyCode: 'Currency'
+      item_risk_infl         as ItemRiskInfl,
+      @Semantics.amount.currencyCode: 'Currency'
+      item_ins_deduct        as ItemInsDeduct,
+      @Semantics.amount.currencyCode: 'Currency'
+      item_misc              as ItemMisc,
+      @Semantics.amount.currencyCode: 'Currency'
+      item_electric          as ItemElectric,
       @Semantics.amount.currencyCode: 'Currency'
       itemized_total         as ItemizedTotal,
 

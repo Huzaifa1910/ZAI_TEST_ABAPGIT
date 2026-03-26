@@ -26,7 +26,9 @@ etag master LocalLastChangedAt
   // ── Determinations ──
   determination deriveProjectDetails on modify { field ProjectId; }
   determination calculateTotals on modify { field CapitalAmount, ExpenseAmount,
-    CostBuildingWork, CostLabEquipment, CostFurniture, CostItInfra, CostFees, CostMisc; }
+    ItemBuilding, ItemProcessLab, ItemFurniture, ItemItInfra, ItemCafeFurn,
+    ItemIdFee, ItemPmFee, ItemAdvisorFee, ItemLowValue, ItemRiskInfl,
+    ItemInsDeduct, ItemMisc, ItemElectric; }
 
   // ── Validations ──
   validation checkProject on save { field ProjectId; create; }
@@ -45,17 +47,27 @@ etag master LocalLastChangedAt
     ProjectId          = project_id;
     ProjectName        = project_name;
     ProjectStartDate   = project_start_date;
-    PurposeAddition    = purpose_addition;
-    PurposeRepair      = purpose_repair;
-    PurposeReplacement = purpose_replacement;
-    PurposeExpansion   = purpose_expansion;
-    PurposeCostReduction = purpose_cost_reduction;
-    PurposeNewProduct  = purpose_new_product;
-    PurposeRetirement  = purpose_retirement;
-    PurposeOther       = purpose_other;
-    PurposeOtherDesc   = purpose_other_desc;
+    PurpAddition       = purp_addition;
+    PurpRepair         = purp_repair;
+    PurpReplacement    = purp_replacement;
+    PurpExpansion      = purp_expansion;
+    PurpCostReduct     = purp_cost_reduct;
+    PurpNewLine        = purp_new_line;
+    PurpRetirement     = purp_retirement;
+    PurpOther          = purp_other;
+    ChkBeforeTax       = chk_before_tax;
+    ChkAfterTax        = chk_after_tax;
     IsBudgeted         = is_budgeted;
     IsUnbudgeted       = is_unbudgeted;
+    RequestedBy        = requested_by;
+    RequestedDesg      = requested_desg;
+    RequestedDept      = requested_dept;
+    SignedBy           = signed_by;
+    StartDate          = start_date;
+    EndDate            = end_date;
+    ProductDesc        = product_desc;
+    ReasonExp          = reason_exp;
+    AltConsidered      = alt_considered;
     CapitalAmount      = capital_amount;
     ExpenseAmount      = expense_amount;
     TotalInvestment    = total_investment;
@@ -63,12 +75,19 @@ etag master LocalLastChangedAt
     ExchangeRate       = exchange_rate;
     PaybackPeriod      = payback_period;
     Currency           = currency;
-    CostBuildingWork   = cost_building_work;
-    CostLabEquipment   = cost_lab_equipment;
-    CostFurniture      = cost_furniture;
-    CostItInfra        = cost_it_infra;
-    CostFees           = cost_fees;
-    CostMisc           = cost_misc;
+    ItemBuilding       = item_building;
+    ItemProcessLab     = item_process_lab;
+    ItemFurniture      = item_furniture;
+    ItemItInfra        = item_it_infra;
+    ItemCafeFurn       = item_cafe_furn;
+    ItemIdFee          = item_id_fee;
+    ItemPmFee          = item_pm_fee;
+    ItemAdvisorFee     = item_advisor_fee;
+    ItemLowValue       = item_low_value;
+    ItemRiskInfl       = item_risk_infl;
+    ItemInsDeduct      = item_ins_deduct;
+    ItemMisc           = item_misc;
+    ItemElectric       = item_electric;
     ItemizedTotal      = itemized_total;
     OverallStatus      = overall_status;
     CreatedBy          = created_by;

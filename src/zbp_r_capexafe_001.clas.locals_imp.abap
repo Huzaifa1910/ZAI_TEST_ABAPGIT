@@ -85,16 +85,22 @@ CLASS lhc_afeheader IMPLEMENTATION.
     READ ENTITIES OF zr_capexafe_001 IN LOCAL MODE
       ENTITY AFEHeader
         FIELDS ( CapitalAmount ExpenseAmount
-                 CostBuildingWork CostLabEquipment CostFurniture
-                 CostItInfra CostFees CostMisc )
+                 ItemBuilding ItemProcessLab ItemFurniture
+                 ItemItInfra ItemCafeFurn ItemIdFee ItemPmFee
+                 ItemAdvisorFee ItemLowValue ItemRiskInfl
+                 ItemInsDeduct ItemMisc ItemElectric )
         WITH CORRESPONDING #( keys )
       RESULT DATA(lt_afe).
 
     LOOP AT lt_afe ASSIGNING FIELD-SYMBOL(<fs_afe>).
       DATA(lv_total_inv) = <fs_afe>-CapitalAmount + <fs_afe>-ExpenseAmount.
-      DATA(lv_itemized)  = <fs_afe>-CostBuildingWork + <fs_afe>-CostLabEquipment
-                         + <fs_afe>-CostFurniture + <fs_afe>-CostItInfra
-                         + <fs_afe>-CostFees + <fs_afe>-CostMisc.
+      DATA(lv_itemized)  = <fs_afe>-ItemBuilding + <fs_afe>-ItemProcessLab
+                         + <fs_afe>-ItemFurniture + <fs_afe>-ItemItInfra
+                         + <fs_afe>-ItemCafeFurn + <fs_afe>-ItemIdFee
+                         + <fs_afe>-ItemPmFee + <fs_afe>-ItemAdvisorFee
+                         + <fs_afe>-ItemLowValue + <fs_afe>-ItemRiskInfl
+                         + <fs_afe>-ItemInsDeduct + <fs_afe>-ItemMisc
+                         + <fs_afe>-ItemElectric.
 
       MODIFY ENTITIES OF zr_capexafe_001 IN LOCAL MODE
         ENTITY AFEHeader

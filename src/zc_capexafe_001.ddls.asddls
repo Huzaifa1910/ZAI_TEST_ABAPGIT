@@ -11,19 +11,37 @@ define root view entity ZC_CAPEXAFE_001
       ProjectStartDate,
 
       // ── Purpose of Expenditure (Checkboxes) ──
-      PurposeAddition,
-      PurposeRepair,
-      PurposeReplacement,
-      PurposeExpansion,
-      PurposeCostReduction,
-      PurposeNewProduct,
-      PurposeRetirement,
-      PurposeOther,
-      PurposeOtherDesc,
+      PurpAddition,
+      PurpRepair,
+      PurpReplacement,
+      PurpExpansion,
+      PurpCostReduct,
+      PurpNewLine,
+      PurpRetirement,
+      PurpOther,
+
+      // ── Tax Checkboxes ──
+      ChkBeforeTax,
+      ChkAfterTax,
 
       // ── Budget Status ──
       IsBudgeted,
       IsUnbudgeted,
+
+      // ── Requester Information ──
+      RequestedBy,
+      RequestedDesg,
+      RequestedDept,
+      SignedBy,
+
+      // ── Project Dates ──
+      StartDate,
+      EndDate,
+
+      // ── Description & Justification ──
+      ProductDesc,
+      ReasonExp,
+      AltConsidered,
 
       // ── Financial Amounts ──
       CapitalAmount,
@@ -35,12 +53,19 @@ define root view entity ZC_CAPEXAFE_001
       Currency,
 
       // ── Itemized Costs ──
-      CostBuildingWork,
-      CostLabEquipment,
-      CostFurniture,
-      CostItInfra,
-      CostFees,
-      CostMisc,
+      ItemBuilding,
+      ItemProcessLab,
+      ItemFurniture,
+      ItemItInfra,
+      ItemCafeFurn,
+      ItemIdFee,
+      ItemPmFee,
+      ItemAdvisorFee,
+      ItemLowValue,
+      ItemRiskInfl,
+      ItemInsDeduct,
+      ItemMisc,
+      ItemElectric,
       ItemizedTotal,
 
       // ── Status ──
