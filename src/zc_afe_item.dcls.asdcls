@@ -1,6 +1,0 @@
-@EndUserText.label: 'Data Control for AFE Item Consumption'
-@MappingRole: true
-define role ZC_AFE_ITEM {
-  grant select on ZC_AFE_ITEM
-  where true;
-}
