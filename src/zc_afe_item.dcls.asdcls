@@ -1,4 +1,7 @@
 @EndUserText.label: 'Data Control for AFE Item Consumption'
-define behavior for ZC_AFE_ITEM
+define role ZC_AFE_ITEM_AUTH for ZC_AFE_ITEM
 {
+  grant
+    select
+    on ZC_AFE_ITEM;
 }

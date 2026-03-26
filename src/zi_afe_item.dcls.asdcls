@@ -1,5 +1,7 @@
 @EndUserText.label: 'Data Control for AFE Item'
-define behavior for ZI_AFE_ITEM
-persistence table ZTB_AFE_ITM
+define role ZI_AFE_ITEM_AUTH for ZI_AFE_ITEM
 {
+  grant
+    select
+    on ZI_AFE_ITEM;
 }
