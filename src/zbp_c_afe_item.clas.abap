@@ -1,0 +1,9 @@
+CLASS zbp_c_afe_item DEFINITION
+  PUBLIC
+  ABSTRACT
+  FINAL
+  FOR BEHAVIOR OF zc_capexafe_001.
+ENDCLASS.
+
+CLASS zbp_c_afe_item IMPLEMENTATION.
+ENDCLASS.

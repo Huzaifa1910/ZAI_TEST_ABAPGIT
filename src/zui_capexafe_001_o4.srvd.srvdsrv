@@ -1,0 +1,5 @@
+@EndUserText.label: 'CAPEX AFE Form Service Definition'
+define service ZUI_CAPEXAFE_001_O4 provider contracts odata_v4_ui {
+  expose ZC_CAPEXAFE_001 as AFEHeader;
+  expose ZC_AFE_ITEM     as AFEItems;
+}

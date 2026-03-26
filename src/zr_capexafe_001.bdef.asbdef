@@ -1,0 +1,115 @@
+managed implementation in class ZBP_R_CAPEXAFE_001 unique;
+strict ( 2 );
+
+define behavior for ZR_CAPEXAFE_001 alias AFEHeader
+persistent table zcapexafe_001
+draft table zcapexafe_001_d
+lock master total etag LastChangedAt
+authorization master ( global )
+etag master LocalLastChangedAt
+{
+  field ( numbering : managed, readonly ) AfeUuid;
+  field ( readonly ) CreatedBy, CreatedAt, LastChangedBy, LastChangedAt, LocalLastChangedAt;
+  field ( readonly ) ProjectName, ProjectStartDate, TotalInvestment, ItemizedTotal;
+
+  create;
+  update;
+  delete;
+
+  // ── Draft Actions ──
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  // ── Determinations ──
+  determination deriveProjectDetails on modify { field ProjectId; }
+  determination calculateTotals on modify { field CapitalAmount, ExpenseAmount,
+    CostBuildingWork, CostLabEquipment, CostFurniture, CostItInfra, CostFees, CostMisc; }
+
+  // ── Validations ──
+  validation checkProject on save { field ProjectId; create; }
+  validation checkBudgetFlags on save { field IsBudgeted, IsUnbudgeted; create; update; }
+
+  // ── Custom Actions ──
+  action Submit result [1] $self;
+  action Reopen result [1] $self;
+
+  // ── Composition ──
+  association _Items { create; }
+
+  mapping for zcapexafe_001
+  {
+    AfeUuid            = afe_uuid;
+    ProjectId          = project_id;
+    ProjectName        = project_name;
+    ProjectStartDate   = project_start_date;
+    PurposeAddition    = purpose_addition;
+    PurposeRepair      = purpose_repair;
+    PurposeReplacement = purpose_replacement;
+    PurposeExpansion   = purpose_expansion;
+    PurposeCostReduction = purpose_cost_reduction;
+    PurposeNewProduct  = purpose_new_product;
+    PurposeRetirement  = purpose_retirement;
+    PurposeOther       = purpose_other;
+    PurposeOtherDesc   = purpose_other_desc;
+    IsBudgeted         = is_budgeted;
+    IsUnbudgeted       = is_unbudgeted;
+    CapitalAmount      = capital_amount;
+    ExpenseAmount      = expense_amount;
+    TotalInvestment    = total_investment;
+    AnnualEarning      = annual_earning;
+    ExchangeRate       = exchange_rate;
+    PaybackPeriod      = payback_period;
+    Currency           = currency;
+    CostBuildingWork   = cost_building_work;
+    CostLabEquipment   = cost_lab_equipment;
+    CostFurniture      = cost_furniture;
+    CostItInfra        = cost_it_infra;
+    CostFees           = cost_fees;
+    CostMisc           = cost_misc;
+    ItemizedTotal      = itemized_total;
+    OverallStatus      = overall_status;
+    CreatedBy          = created_by;
+    CreatedAt          = created_at;
+    LastChangedBy      = last_changed_by;
+    LastChangedAt      = last_changed_at;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
+
+define behavior for ZI_AFE_ITEM alias AFEItem
+persistent table ztb_afe_itm
+draft table zcapexafe_001_d
+lock dependent by _Header
+authorization dependent by _Header
+etag master LocalLastChangedAt
+{
+  field ( numbering : managed, readonly ) ItemUuid;
+  field ( readonly ) ParentUuid;
+  field ( readonly ) CreatedBy, CreatedAt, LastChangedBy, LastChangedAt, LocalLastChangedAt;
+
+  update;
+  delete;
+
+  association _Header;
+
+  mapping for ztb_afe_itm
+  {
+    ItemUuid        = item_uuid;
+    ParentUuid      = parent_uuid;
+    ItemCategory    = item_category;
+    ItemDescription = item_description;
+    ItemAmount      = item_amount;
+    Quantity        = quantity;
+    UnitPrice       = unit_price;
+    Currency        = currency;
+    Notes           = notes;
+    CreatedBy       = created_by;
+    CreatedAt       = created_at;
+    LastChangedBy   = last_changed_by;
+    LastChangedAt   = last_changed_at;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}

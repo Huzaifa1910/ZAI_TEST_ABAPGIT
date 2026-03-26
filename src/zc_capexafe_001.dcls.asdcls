@@ -1,0 +1,7 @@
+@EndUserText.label: 'Access Control for ZC_CAPEXAFE_001'
+@MappingRole: true
+define role ZC_CAPEXAFE_001
+{
+  grant select on ZC_CAPEXAFE_001
+  where ( ) = aspect pfcg_auth( S_TABUAUTH, TABLE, ACTVT = '03' );
+}

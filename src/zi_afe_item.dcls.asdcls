@@ -1,0 +1,7 @@
+@EndUserText.label: 'Access Control for ZI_AFE_ITEM'
+@MappingRole: true
+define role ZI_AFE_ITEM
+{
+  grant select on ZI_AFE_ITEM
+  where ( ) = aspect pfcg_auth( S_TABUAUTH, TABLE, ACTVT = '03' );
+}
