@@ -1,7 +1,6 @@
 @EndUserText.label: 'Data Control for AFE Item'
-define role ZI_AFE_ITEM_AUTH for ZI_AFE_ITEM
-{
-  grant
-    select
-    on ZI_AFE_ITEM;
+@MappingRole: true
+define role ZI_AFE_ITEM {
+  grant select on ZI_AFE_ITEM
+  where true;
 }
